@@ -30,7 +30,7 @@ const btnStyle = {
 export default function Login() {
   return (
     <ChakraProvider theme={theme}>
-      <Center>
+      <Center h="100vh">
         <Box p="10" maxW="620px" borderWidth="2px">
           <Text
             mt={2}
@@ -39,14 +39,14 @@ export default function Login() {
             lineHeight="short"
             style={headStyle}
           >
-            LOGIN in to
+            LOGIN
           </Text>
           <FormControl>
             <FormLabel htmlFor="email">Email address</FormLabel>
             <Input id="email" type="email" />
 
-            <FormLabel htmlFor="password">Password</FormLabel>
-            <Input id="password" type="password" />
+            <FormLabel htmlFor="password">Enter OTP</FormLabel>
+            <Input id="otp" type="number" max={6} />
           </FormControl>
           <Button colorScheme="blue" variant="ghost" style={btnStyle}>
             Submit
