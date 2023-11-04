@@ -10,20 +10,29 @@ services:
     volumes:
       - ./server/:/server
 
-  # client:
-  #   image: ./client
-  #   links:
-  #     - server
-  #   ports:
-  #     - "3006:3006"
-  #   volumes:
-  #     - "./client:/client"
+  #client
+  node:
+    image: "node:18-alpine"
+    user: "node"
+    working_dir: /home/node/app
+    volumes:
+      - ./client/:/home/node/app
+    ports:
+      - 3000:3000
+    environment:
+      - WATCHPACK_POLLING=true
+      - WDS_SOCKET_HOST=0.0.0.0
+      - WDS_SOCKET_PORT=3000
+    command: sh -c "yarn install && yarn run start"
+    stdin_open: true
+    tty: true
 
   db:
-    image: mysql:5.7
+    image: mysql:8.0
     ports:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - ./db:/docker-entrypoint-initdb.d/:ro
+      - ./db:/var/lib/mysql
