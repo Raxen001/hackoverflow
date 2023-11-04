@@ -1,5 +1,8 @@
 flask
 flask-jwt-extended
+flask-sqlalchemy 
+flask-login
+cryptography
 mysql-connector-python
 mysql
 pyotp
