@@ -3,6 +3,7 @@ flask-jwt-extended
 flask-sqlalchemy 
 flask-login
 cryptography
+requests
 mysql-connector-python
 mysql
 pyotp
