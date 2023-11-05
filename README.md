@@ -7,6 +7,9 @@ Implement encrypted file storage, secure user authentication, and measures to pr
 # TODO
 
 - [ ] user auth
+    - [ ] check if username already exists
+    - [ ] add them username
+- [ ] create ebook db
 - [ ] encrypted storage
 - [ ] prevent unauthorized copyright
   - [ ] content identification

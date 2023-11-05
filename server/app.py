@@ -3,6 +3,7 @@ import pyotp
 from flask import *
 from flask_bootstrap import Bootstrap
 
+
 # configuring flask application
 app = Flask(__name__)
 # change this
@@ -32,9 +33,12 @@ def login_2fa():
 # 2FA form route
 @app.route("/login", methods=["POST"])
 def login_2fa_form():
-    secret = "helloworld"
+    import db
+    email = request.form.get("username")
     otp = int(request.form.get("otp"))
 
+    secret = db.get_user_secret(email)
+    print("Secret is: ", secret)
     # verifying submitted OTP with PyOTP
     if pyotp.TOTP(secret).verify(otp):
         # inform users if OTP is valid
@@ -55,15 +59,24 @@ def signup():
 def signup_form():
     import mail
     import qrcode
+    import db
 
     email = request.form.get("email")
+    if db.check_user_exists(email):
+        flash("User already exists, redirecting to login page")
+        return redirect(url_for('login_2fa'))
+
     secret = pyotp.random_base32()
+
     # change hello world to db
-    totp = pyotp.TOTP("helloworld")
+    totp = pyotp.TOTP(secret)
+
     account_name = email
     issuer = "Reader's Club"
     provisioning_uri = totp.provisioning_uri(
         name=account_name, issuer_name=issuer)
+
+    db.add_user(email, secret)
 
     img = qrcode.make(provisioning_uri)
     file_name = "qrcodes/" + email + ".png"
