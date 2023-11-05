@@ -6,16 +6,19 @@ Implement encrypted file storage, secure user authentication, and measures to pr
 
 # TODO
 
-- [ ] user auth
-    - [ ] check if username already exists
-    - [ ] add them username
+- [x] user auth
+  - [x] check if username already exists
+  - [x] add them username
 - [ ] create ebook db
 - [ ] encrypted storage
+- [ ] privacy control for their e-books
+
 - [ ] prevent unauthorized copyright
+
   - [ ] content identification
     - isbn
   - [ ] watermarking
+
 - [ ] identical content tracker
-- [ ] privacy control for their e-books
 - [ ] content moderation, book reviews
 - [ ] logs

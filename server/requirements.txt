@@ -3,7 +3,7 @@ flask-bootstrap
 flask-session
 flask-sqlalchemy 
 flask-login
-Flask-JWT-Extended
+flask-jwt-extended
 cryptography
 requests
 mysql-connector-python
